@@ -38,6 +38,52 @@
     body { margin: 0; background: #0a1526; }
     input::placeholder, textarea::placeholder { color: #6b7a90; }
     .ufd-disp { font-family: 'Saira Condensed', sans-serif; font-style: italic; font-weight: 800; text-transform: uppercase; }
+
+    /* ============ Responsive: tablet & mobile ============ */
+    @media (max-width: 1000px) {
+      .ufd-nav-cta { display: none !important; }
+      .ufd-navbar { gap: 18px !important; padding: 12px 20px !important; }
+      .ufd-navlinks { gap: 18px !important; margin-left: 10px !important; }
+    }
+    @media (max-width: 768px) {
+      /* Nav becomes two rows: logo + phone, then links underneath */
+      .ufd-navbar { flex-wrap: wrap !important; gap: 8px 14px !important; padding: 10px 16px !important; }
+      .ufd-navbar img { height: 40px !important; }
+      .ufd-nav-phone { order: 2 !important; margin-left: auto !important; font-size: 16px !important; }
+      .ufd-navlinks { order: 3 !important; flex-basis: 100% !important; width: 100% !important; margin-left: 0 !important;
+        flex-wrap: wrap !important; justify-content: center !important; gap: 8px 16px !important;
+        border-top: 1px solid rgba(255,255,255,0.08) !important; padding-top: 10px !important; }
+      .ufd-navlinks a { font-size: 12.5px !important; letter-spacing: 0.02em !important; white-space: nowrap !important; padding-bottom: 3px !important; }
+
+      /* Collapse multi-column grids to a single column */
+      [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+      [style*="grid-column: span 2"] { grid-column: auto !important; }
+
+      /* Keep the comparison table an actual table */
+      .ufd-cmp > div { grid-template-columns: 1.5fr 0.72fr 0.72fr !important; }
+      .ufd-cmp [style*="padding: 22px 26px"], .ufd-cmp [style*="padding: 18px 26px"] { padding-left: 14px !important; padding-right: 8px !important; }
+      .ufd-cmp [style*="padding: 22px 20px"], .ufd-cmp [style*="padding: 18px 20px"] { padding-left: 6px !important; padding-right: 6px !important; font-size: 13.5px !important; }
+
+      /* Drop stray divider lines left behind when strips stack */
+      [style*="border-right: 1px solid rgba(255,255,255,0.09)"] { border-right: none !important; }
+      [style*="border-left: 1px solid rgba(255,255,255,0.09)"] { border-left: none !important; }
+      [style*="width: 1px; height: 100%"] { display: none !important; }
+      span[style*="repeating-linear-gradient(90deg, #cf1f2e"],
+      span[style*="linear-gradient(90deg, transparent, #cf1f2e)"],
+      span[style*="linear-gradient(90deg, #cf1f2e, transparent)"] { display: none !important; }
+
+      /* Home hero: image sits behind copy; copy flows normally */
+      .ufd-hero-img { position: absolute !important; inset: 0 !important; }
+      .ufd-hero-scrim { background: linear-gradient(180deg, rgba(10,21,38,0.72), rgba(10,21,38,0.93)) !important; }
+      .ufd-hero-copy { position: relative !important; padding: 44px 24px !important; }
+
+      /* Home "how we help" flow: stack steps, hide arrows */
+      .ufd-flow { flex-direction: column !important; align-items: center !important; gap: 22px !important; }
+      .ufd-flow > i { display: none !important; }
+
+      /* Partner banner wraps instead of squeezing */
+      .ufd-partner { flex-wrap: wrap !important; gap: 14px !important; }
+    }
   </style>
 </helmet>
 
@@ -45,17 +91,17 @@
 
   <!-- NAV -->
   <header style="position: sticky; top: 0; z-index: 60; background: rgba(9,17,32,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.07);">
-    <div style="max-width: 1220px; margin: 0 auto; padding: 12px 30px; display: flex; align-items: center; gap: 30px;">
+    <div class="ufd-navbar" style="max-width: 1220px; margin: 0 auto; padding: 12px 30px; display: flex; align-items: center; gap: 30px;">
       <a href="/" style="flex: 0 0 auto; display: flex; align-items: center;"><img src="uploads/logo-trimmed.png" alt="USA Freight Dispatch" style="height: 50px; width: auto; display: block;"></a>
-      <nav style="margin-left: 14px; display: flex; align-items: center; gap: 26px;">
+      <nav class="ufd-navlinks" style="margin-left: 14px; display: flex; align-items: center; gap: 26px;">
         <a href="/" style="color: #b8c4d4; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em;">HOME</a>
         <a href="/about" style="color: #b8c4d4; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em;">ABOUT US</a>
         <a href="/services" style="color: #b8c4d4; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em;">SERVICES</a>
         <a href="/why-us" style="color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 0.06em; padding-bottom: 3px; border-bottom: 2px solid #cf1f2e;">WHY US</a>
         <a href="/contact" style="color: #b8c4d4; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em;">CONTACT</a>
       </nav>
-      <a href="tel:4048320443" style="margin-left: auto; display: flex; align-items: center; gap: 9px; color: #fff; text-decoration: none; font-weight: 800; font-size: 17px; white-space: nowrap;"><i class="fa-solid fa-phone-volume" style="color: #cf1f2e; font-size: 16px;"></i>404-832-0443</a>
-      <a href="/contact" style="background: #cf1f2e; color: #fff; text-decoration: none; font-weight: 700; font-size: 13.5px; letter-spacing: 0.08em; padding: 12px 20px; border-radius: 7px; box-shadow: 0 6px 16px rgba(207,31,46,0.4);">GET STARTED</a>
+      <a class="ufd-nav-phone" href="tel:4048320443" style="margin-left: auto; display: flex; align-items: center; gap: 9px; color: #fff; text-decoration: none; font-weight: 800; font-size: 17px; white-space: nowrap;"><i class="fa-solid fa-phone-volume" style="color: #cf1f2e; font-size: 16px;"></i>404-832-0443</a>
+      <a class="ufd-nav-cta" href="/contact" style="background: #cf1f2e; color: #fff; text-decoration: none; font-weight: 700; font-size: 13.5px; letter-spacing: 0.08em; padding: 12px 20px; border-radius: 7px; box-shadow: 0 6px 16px rgba(207,31,46,0.4);">GET STARTED</a>
     </div>
   </header>
 
@@ -128,7 +174,7 @@
         <h2 class="ufd-disp" style="font-size: 36px; margin: 0; color: #fff; text-align: center;">See The Difference</h2>
         <span style="width: 90px; height: 3px; background: repeating-linear-gradient(90deg, #cf1f2e 0 14px, transparent 14px 20px);"></span>
       </div>
-      <div style="background: #0f1d33; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden;">
+      <div class="ufd-cmp" style="background: #0f1d33; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden;">
         <div style="display: grid; grid-template-columns: 1.6fr 1fr 1fr;">
           <div style="padding: 22px 26px; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; color: #9fb0c4;">&nbsp;</div>
           <div style="padding: 22px 20px; text-align: center; background: rgba(207,31,46,0.14); border-left: 1px solid rgba(255,255,255,0.08);"><div class="ufd-disp" style="font-size: 19px; color: #fff; line-height: 1;">USA Freight<br>Dispatch</div></div>
