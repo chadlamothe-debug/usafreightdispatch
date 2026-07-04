@@ -92,8 +92,9 @@
       /* Partner banner wraps instead of squeezing */
       .ufd-partner { flex-wrap: wrap !important; gap: 14px !important; }
 
-      /* Footer stacks fully on phones */
-      footer [style*="grid-template-columns: 1.6fr 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 30px !important; }
+      /* Footer on phones: brand on top, links in two columns (no wasted space) */
+      footer [style*="grid-template-columns: 1.6fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; gap: 28px 20px !important; }
+      footer [style*="grid-template-columns: 1.6fr 1fr 1fr"] > :first-child { grid-column: 1 / -1 !important; }
     }
   </style>
 </helmet>
